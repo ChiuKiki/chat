@@ -9,18 +9,18 @@ class User extends Model
     /**
      * 登录
      *
-     * @param Request $request->tel
+     * @param Request $request->name
      * @param Request $request->password
      * @return $result
      */
     public static function loginModel($request){
-        $tel = $request->get('tel');
+        $name = $request->get('name');
         $password = $request->get('password');
 
-        $isTelExist = User::where(['tel'=>$tel])->first();
-        if(!$isTelExist) return $result = 0;
+        $isNameExist = User::where(['name'=>$name])->first();
+        if(!$isNameExist) return $result = 0;
 
-        $match = User::where(['tel'=>$tel,'password'=>$password])->first();
+        $match = User::where(['name'=>$name,'password'=>$password])->first();
         if($match) return $result = 1;
         else return $result = -1;
     }
@@ -50,11 +50,11 @@ class User extends Model
     /**
      * 获取个人信息
      *
-     * @param $tel
+     * @param $name
      * @return $result
      */
-    public static function userModel($tel){
-        $result=User::where('tel',$tel)
+    public static function userModel($name){
+        $result=User::where('name',$name)
             ->select('name','gender','birthday','tel', 'QQ','email')
             ->first();
         return $result;
@@ -78,8 +78,8 @@ class User extends Model
         $birthday = $request->get('birthday');
         $QQ = $request->get('QQ');
         $email = $request->get('email');
-        $result = User::where('tel', $tel)->update(
-                ['name' => $name, 'gender' => $gender, 'birthday' => $birthday, 'QQ' => $QQ, 'email' => $email]
+        $result = User::where('name', $name)->update(
+                ['tel' => $tel, 'gender' => $gender, 'birthday' => $birthday, 'QQ' => $QQ, 'email' => $email]
         );
         return $result;
     }

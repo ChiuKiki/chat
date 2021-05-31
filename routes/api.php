@@ -17,10 +17,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-//忘记密码
-Route::any('forgetPassword','PeopleController@forgetPasswordModel');
-
-
 // 登录
 Route::post('login','UserController@login');
 // 注册
