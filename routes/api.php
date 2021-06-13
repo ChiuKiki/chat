@@ -21,8 +21,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('login','UserController@login');
 // 注册
 Route::post('register','UserController@register');
-// 修改信息
-Route::post('update','UserController@update');
-// 获取个人信息
-Route::post('user','UserController@user');
+
 
